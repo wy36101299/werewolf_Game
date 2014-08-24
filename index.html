@@ -1,0 +1,165 @@
+<!DOCTYPE HTML> 
+<html lang="zh-TW">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+	<title>狼人</title>
+</head>
+<style type="text/css">
+body {
+ background: #ccc;   
+}
+.flip {
+  -webkit-perspective: 800;
+   width: 400px;
+   height: 200px;
+    position: relative;
+    margin: 50px auto;
+}
+.flip .card.flipped {
+  -webkit-transform: rotatex(-180deg);
+}
+.flip .card {
+  width: 100%;
+  height: 100%;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transition: 0.5s;
+}
+.flip .card .face {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  -webkit-backface-visibility: hidden ;
+  z-index: 2;
+    font-family: Georgia;
+    font-size: 3em;
+    text-align: center;
+    line-height: 200px;
+}
+.flip .card .front {
+  position: absolute;
+  z-index: 1;
+    background: black;
+    color: white;
+    cursor: pointer;
+}
+.flip .card .back {
+  -webkit-transform: rotatex(-180deg);
+    background: blue;
+    background: white;
+    color: black;
+    cursor: pointer;
+}
+.hidden{
+	display: none;
+}
+</style>
+<body id="body" class="tw">
+<div class="intro">
+	<div>遊戲介紹請輸入8~18的遊戲人數</div>
+	<div class="ui input">
+	  <input type="text" placeholder="Search...">
+	</div>
+	<button id="btn">遊戲開始</button>
+</div>
+<div class="flip hidden"> 
+        <div class="card"> 
+            <div class="face front"> 
+                背面
+            </div> 
+            <div class="face back"> 
+                
+            </div> 
+        </div> 
+</div> 
+
+</body>
+	<script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
+<script type="text/javascript">
+	
+	// Fisher-Yates Shuffle
+	function shuffle(array) {
+	    var counter = array.length, temp, index;
+
+	    // While there are elements in the array
+	    while (counter > 0) {
+	        // Pick a random index
+	        index = Math.floor(Math.random() * counter);
+	        // Decrease counter by 1
+	        counter--;
+	        // And swap the last element with it
+	        temp = array[counter];
+	        array[counter] = array[index];
+	        array[index] = temp;
+	    }
+	    return array;
+	}
+	// 預設人數 預言家,女巫,守衛,丘比特 8~11 兩個狼人 12~17 三個狼人 18 四個狼人 其餘村民
+	// 預言家:0 女巫:1 守衛:2 丘比特:3 狼人:4 村民:5
+	function creatarray(num) {
+		ary = [];
+		for (var i = 0; i < 4; i++) {
+			ary.push(i);
+		};
+		if(8 <= num <= 11){
+			for (var i = 0; i < 2; i++) {
+				ary.push(4);
+			};
+			for (var i = 0; i < num-4-2; i++) {
+				ary.push(5);
+			};
+		}else if(12 <= num <= 17){
+			for (var i = 0; i < 3; i++) {
+				ary.push(4);
+			};
+			for (var i = 0; i < num-4-3; i++) {
+				ary.push(5);
+			};
+		}else{
+			for (var i = 0; i < 4; i++) {
+				ary.push(4);
+			};
+			for (var i = 0; i < num-4-4; i++) {
+				ary.push(5);
+			};
+		}
+		return map(shuffle(ary));
+	}
+	function map(array){
+		var map = ['預言家','女巫','守衛','丘比特','狼人','村民'];
+		for (var i = 0; i < array.length; i++) {
+			array[i] = map[array[i]];
+		};
+		return array;
+	}
+
+	// console.log(creatarray(5));
+
+	$(document).on('click','#btn',function(){
+		people = $(this).prev().children().val().trim() || null;
+		if( people == null ){
+			alert('未輸入遊戲人數');
+		}
+		$('.flip').removeClass('hidden');
+		$('.intro').addClass('hidden');
+		card = 	creatarray(people);
+		console.log('遊戲人數->'+people+' '+'角色順序->'+card);
+	});
+	$(document).on('click','.flip > .card',function(){
+		if(card == ''){
+			$(this).addClass('hidden')
+			$('#btn').addClass('hidden')
+			$('.intro').removeClass('hidden');
+		}
+		if( $(this).hasClass('flipped') ){
+			$(this).removeClass('flipped');
+		}
+		else{
+			$(this).addClass('flipped');
+			$(this).children('.back').text(card.shift());
+		}
+	});  
+
+	</script>
+
+</html>
