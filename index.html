@@ -54,13 +54,16 @@ body {
 	display: none;
 }
 </style>
+<script src="jquery-2.1.1.min.js"></script>
 <body id="body" class="tw">
 <div class="intro">
 	<div>遊戲介紹請輸入8~18的遊戲人數</div>
-	<div class="ui input">
-	  <input type="text" placeholder="Search...">
+	<div class="setting">
+		<div class="ui input">
+		  <input type="text" placeholder="Search...">
+		</div>
+		<button id="btn">遊戲開始</button>		
 	</div>
-	<button id="btn">遊戲開始</button>
 </div>
 <div class="flip hidden"> 
         <div class="card"> 
@@ -74,13 +77,11 @@ body {
 </div> 
 
 </body>
-	<script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
-<script type="text/javascript">
-	
+
+<script type="text/javascript">	
 	// Fisher-Yates Shuffle
 	function shuffle(array) {
 	    var counter = array.length, temp, index;
-
 	    // While there are elements in the array
 	    while (counter > 0) {
 	        // Pick a random index
@@ -98,9 +99,11 @@ body {
 	// 預言家:0 女巫:1 守衛:2 丘比特:3 狼人:4 村民:5
 	function creatarray(num) {
 		ary = [];
+		// 預言家:0 女巫:1 守衛:2 丘比特:3
 		for (var i = 0; i < 4; i++) {
 			ary.push(i);
 		};
+		// 8~11 兩個狼人
 		if(8 <= num <= 11){
 			for (var i = 0; i < 2; i++) {
 				ary.push(4);
@@ -108,6 +111,7 @@ body {
 			for (var i = 0; i < num-4-2; i++) {
 				ary.push(5);
 			};
+		// 12~17 三個狼人
 		}else if(12 <= num <= 17){
 			for (var i = 0; i < 3; i++) {
 				ary.push(4);
@@ -115,6 +119,7 @@ body {
 			for (var i = 0; i < num-4-3; i++) {
 				ary.push(5);
 			};
+		// 18 四個狼人
 		}else{
 			for (var i = 0; i < 4; i++) {
 				ary.push(4);
@@ -133,33 +138,37 @@ body {
 		return array;
 	}
 
-	// console.log(creatarray(5));
-
 	$(document).on('click','#btn',function(){
-		people = $(this).prev().children().val().trim() || null;
-		if( people == null ){
-			alert('未輸入遊戲人數');
+		people = parseInt($(this).prev().children().val().trim()) || null;
+		console.log(people)
+		console.log(typeof(people))
+		if( 8 <= people && people <= 18 ){
+			console.log('範圍內')
+
+			$(this).parent().parent().siblings('.flip').removeClass('hidden');
+			$(this).parent().parent().addClass('hidden');
+
+			card = 	creatarray(people);
+			console.log('遊戲人數->'+people+' '+'角色順序->'+card);
+
+			$(document).on('click','.flip > .card',function(){
+				if(card == ''){
+					$(this).parent().addClass('hidden')
+					$(this).parent().siblings('.intro').removeClass('hidden');
+				}
+				if( $(this).hasClass('flipped') ){
+					$(this).removeClass('flipped');
+				}
+				else{
+					$(this).addClass('flipped');
+					$(this).children('.back').text(card.shift());
+				}
+			});  			
+		}else{
+			$(this).prev().children().val('');
+			alert('請輸入8到18之遊戲人數');
 		}
-		$('.flip').removeClass('hidden');
-		$('.intro').addClass('hidden');
-		card = 	creatarray(people);
-		console.log('遊戲人數->'+people+' '+'角色順序->'+card);
+		
 	});
-	$(document).on('click','.flip > .card',function(){
-		if(card == ''){
-			$(this).addClass('hidden')
-			$('#btn').addClass('hidden')
-			$('.intro').removeClass('hidden');
-		}
-		if( $(this).hasClass('flipped') ){
-			$(this).removeClass('flipped');
-		}
-		else{
-			$(this).addClass('flipped');
-			$(this).children('.back').text(card.shift());
-		}
-	});  
-
 	</script>
-
 </html>
