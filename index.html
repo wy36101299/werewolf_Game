@@ -56,25 +56,24 @@ body {
 </style>
 <script src="jquery-2.1.1.min.js"></script>
 <body id="body" class="tw">
-<div class="intro">
-	<div>遊戲介紹請輸入8~18的遊戲人數</div>
-	<div class="setting">
+<div class="setting">
+	<div>請輸入8~18的遊戲人數</div>
 		<div class="ui input">
 		  <input type="text" placeholder="Search...">
 		</div>
 		<button id="btn">遊戲開始</button>		
-	</div>
 </div>
 <div class="flip hidden"> 
-        <div class="card"> 
-            <div class="face front"> 
-                背面
-            </div> 
-            <div class="face back"> 
-                
-            </div> 
+    <div class="card"> 
+        <div class="face front"> 
+            背面
         </div> 
+        <div class="face back"></div> 
+    </div> 
 </div> 
+<div class="game hidden">
+	<p>遊戲介紹</p>
+</div>
 
 </body>
 
@@ -137,24 +136,19 @@ body {
 		};
 		return array;
 	}
-
 	$(document).on('click','#btn',function(){
 		people = parseInt($(this).prev().children().val().trim()) || null;
 		console.log(people)
 		console.log(typeof(people))
 		if( 8 <= people && people <= 18 ){
-			console.log('範圍內')
-
-			$(this).parent().parent().siblings('.flip').removeClass('hidden');
-			$(this).parent().parent().addClass('hidden');
-
+			$(this).parent().siblings('.flip').removeClass('hidden');
+			$(this).parent().addClass('hidden');
 			card = 	creatarray(people);
 			console.log('遊戲人數->'+people+' '+'角色順序->'+card);
-
 			$(document).on('click','.flip > .card',function(){
 				if(card == ''){
-					$(this).parent().addClass('hidden')
-					$(this).parent().siblings('.intro').removeClass('hidden');
+					$(this).parent().addClass('hidden');
+					$(this).parent().siblings('.game').removeClass('hidden');
 				}
 				if( $(this).hasClass('flipped') ){
 					$(this).removeClass('flipped');
@@ -168,7 +162,7 @@ body {
 			$(this).prev().children().val('');
 			alert('請輸入8到18之遊戲人數');
 		}
-		
+
 	});
 	</script>
 </html>
