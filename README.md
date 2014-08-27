@@ -16,7 +16,7 @@ werewolf_Game
 5.預言家睜眼，確認任意一個人是不是狼人，主持人比手勢告知，然後閉眼  
 6.女巫睜眼，主持人示意女巫死掉的人，可以用解藥將他救活。 （可以救自己，或是用毒藥殺任何一名人，整場毒藥和解藥只有各一瓶，然後閉眼  
 
-###使用方法
+###DEMO
 
    網址：http://hpdswy.ee.ncku.edu.tw/~wy/git_project/werewolf_Game/  
  短網址：http://ppt.cc/fo5Q  
