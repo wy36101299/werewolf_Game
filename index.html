@@ -39,22 +39,22 @@ font-family: 'Helvetica Neue', Helvetica, '微軟正黑體', Arial,sans-serif;
     font-size: 3em;
     text-align: center;
     line-height: 297px;
-	border: 1px solid #d8d8d8;
-	border-bottom-width: 2px;
+	border: 1.5px solid #d8d8d8;
+	border-bottom-width: 2.5px;
 	border-radius: 5px;
 }
 .flip .card .front {
   position: absolute;
   z-index: 1;
-    background: #E8534F;
+    background: #FFFFFF;
     color: white;
     cursor: pointer;
+    margin-left: 12px;
 }
 .flip .card .back {
     transform: rotateY(180deg);
-    background: blue;
-    background: white;
-    color: black;
+	background: #D95C5C;
+	color: white;
     cursor: pointer;
 }
 .hidden{
@@ -63,7 +63,7 @@ font-family: 'Helvetica Neue', Helvetica, '微軟正黑體', Arial,sans-serif;
 .form{
 /*	width:100%;
 */	max-width: 500px;
-	padding: 5px 10px 0px 10px;
+	padding: 5px 10px 10px 10px;
 	background:white;
 	text-align: center;
 	margin:auto;
@@ -80,8 +80,13 @@ font-family: 'Helvetica Neue', Helvetica, '微軟正黑體', Arial,sans-serif;
 .ui.header .sub.header {
 line-height: 1.4;
 }
-.ui.label {
-font-size: 1.8125rem;
+i.icon {
+font-size: 0.8em;
+}
+.game > .content{
+	text-align: left;
+color: rgba(0,0,0,.5);
+margin: 0px 10px 5px 10px;
 }
 </style>
 <body id="body" class="tw">
@@ -103,25 +108,24 @@ font-size: 1.8125rem;
 <div class="flip hidden"> 
     <div class="card"> 
         <div class="face front"> 
-            <div class="ui red circular label">1</div>
+        	<i class="circular inverted red icon">1</i>
         </div> 
         <div class="face back"></div> 
     </div> 
 </div> 
 <div class="game form hidden">
-	<h2 class="ui blue header">
+	<h2 class="ui blue header">進入黑夜</h2>
 	  <div class="content">
-	    進入黑夜
 	    <div class="sub header">1.丘比特睜眼，指定任意兩個人為戀人，然後閉眼。</div>
 	    <div class="sub header">2.戀人睜眼，相互認識，然後閉眼。</div>
 	    <div class="sub header">3.守衛睜眼，守護一個想守護的人，然後閉眼。</div>
 	    <div class="sub header">4.狼人睜眼，互相認識，並決定要殺誰，然後閉眼。</div>
-	    <div class="sub header">5.預言家睜眼，確認任意一個人是不是狼人，主持人比手勢告知，然後閉眼
-</div>
+	    <div class="sub header">5.預言家睜眼，確認任意一個人是不是狼人，主持人比手勢告知，然後閉眼</div>
 	    <div class="sub header">6.女巫睜眼，主持人示意女巫死掉的人，可以用解藥將他救活。
 （可以救自己，或是用毒藥殺任何一名人，整場毒藥和解藥只有各一瓶，然後閉眼</div>
 	  </div>
-	</h2>
+	
+	<div id='restart' class="ui primary button">重新開始</div>
 </div>
 
 </body>
@@ -221,7 +225,9 @@ font-size: 1.8125rem;
 			$(this).siblings().val('');
 			alert('請輸入8到18之遊戲人數');
 		}
-
+	});
+	$(document).on('click','#restart',function(){
+		window.location.reload();
 	});
 	</script>
 </html>
