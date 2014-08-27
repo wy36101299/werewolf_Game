@@ -4,230 +4,48 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
 	<title>狼人</title>
-	<script src="./lib/js/jquery-2.1.1.min.js"></script>
-	<script src="./lib/js/semantic.min.js"></script>
 	<link rel="stylesheet" href="./lib/style/reset.css">
 	<link rel="stylesheet" href="./lib/style/semantic.min.css">
+	<link rel="stylesheet" href="index.css">
 </head>
-<style type="text/css">
-body {
-background: #F2F2F2;
-font-family: 'Helvetica Neue', Helvetica, '微軟正黑體', Arial,sans-serif;
-}
-.flip {
-  -webkit-perspective: 800;
-   width: 200px;
-   height: 300px;
-    position: relative;
-    margin: 50px auto;
-}
-.flip .card.flipped {
-  transform: rotateY(180deg);
-}
-.flip .card {
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: 0.5s;
-}
-.flip .card .face {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  -webkit-backface-visibility: hidden ;
-  z-index: 2;
-    font-size: 3em;
-    text-align: center;
-    line-height: 297px;
-	border: 1.5px solid #d8d8d8;
-	border-bottom-width: 2.5px;
-	border-radius: 5px;
-}
-.flip .card .front {
-  position: absolute;
-  z-index: 1;
-    background: #FFFFFF;
-    color: white;
-    cursor: pointer;
-    margin-left: 12px;
-}
-.flip .card .back {
-    transform: rotateY(180deg);
-	background: #D95C5C;
-	color: white;
-    cursor: pointer;
-}
-.hidden{
-	display: none;
-}
-.form{
-/*	width:100%;
-*/	max-width: 500px;
-	padding: 5px 10px 10px 10px;
-	background:white;
-	text-align: center;
-	margin:auto;
-	margin-top: 30px;
-	border: 1px solid #d8d8d8;
-	border-bottom-width: 2px;
-	border-radius: 5px;
-
-}
-.people{
-	margin:auto;
-	padding-bottom: 10px;
-}
-.ui.header .sub.header {
-line-height: 1.4;
-}
-i.icon {
-font-size: 0.8em;
-}
-.game > .content{
-	text-align: left;
-color: rgba(0,0,0,.5);
-margin: 0px 10px 5px 10px;
-}
-</style>
-<body id="body" class="tw">
-
-<div class="setting form">
-	<h2 class="ui blue header">
-	  <div class="content">
-	    狼人
-	    <div class="sub header">遊戲人數8~18人</div>
-	    <div class="sub header">預設角色：預言家 女巫 守衛 丘比特 狼人 村民</div>
-	    <div class="sub header">8~11人 兩個狼人 12~17人 三個狼人 18人 四個狼人</div>
-	  </div>
-	</h2>
-	<div class="people ui action input">
-	  <input type="text" placeholder="遊戲人數">
-	  <div id="btn" class="ui button">start</div>
+<body id="body">
+	<div class="setting form">
+		<h2 class="ui blue header">
+			<div class="content">
+			  狼人
+			  <div class="sub header">遊戲人數8~18人</div>
+			  <div class="sub header">預設角色：預言家 女巫 守衛 丘比特 狼人 村民</div>
+			  <div class="sub header">8~11人 兩個狼人 12~17人 三個狼人 18人 四個狼人</div>
+			</div>
+		</h2>
+		<div class="people ui action input">
+		    <input type="text" placeholder="遊戲人數">
+		    <div id="btn" class="ui button">start</div>
+		</div>
 	</div>
-</div>
-<div class="flip hidden"> 
-    <div class="card"> 
-        <div class="face front"> 
-        	<i class="circular inverted red icon">1</i>
-        </div> 
-        <div class="face back"></div> 
-    </div> 
-</div> 
-<div class="game form hidden">
-	<h2 class="ui blue header">進入黑夜</h2>
-	  <div class="content">
-	    <div class="sub header">1.丘比特睜眼，指定任意兩個人為戀人，然後閉眼。</div>
-	    <div class="sub header">2.戀人睜眼，相互認識，然後閉眼。</div>
-	    <div class="sub header">3.守衛睜眼，守護一個想守護的人，然後閉眼。</div>
-	    <div class="sub header">4.狼人睜眼，互相認識，並決定要殺誰，然後閉眼。</div>
-	    <div class="sub header">5.預言家睜眼，確認任意一個人是不是狼人，主持人比手勢告知，然後閉眼</div>
-	    <div class="sub header">6.女巫睜眼，主持人示意女巫死掉的人，可以用解藥將他救活。
+	<div class="flip hidden"> 
+	    <div class="card"> 
+	        <div class="face front"> 
+	        	<i class="circular inverted red icon">1</i>
+	        </div> 
+	        <div class="face back"></div> 
+	    </div> 
+	</div> 
+	<div class="game form hidden">
+		<h2 class="ui blue header">進入黑夜</h2>
+	    <div class="content">
+	        <div class="sub header">1.丘比特睜眼，指定任意兩個人為戀人，然後閉眼。</div>
+	        <div class="sub header">2.戀人睜眼，相互認識，然後閉眼。</div>
+	        <div class="sub header">3.守衛睜眼，守護一個想守護的人，然後閉眼。</div>
+	        <div class="sub header">4.狼人睜眼，互相認識，並決定要殺誰，然後閉眼。</div>
+	        <div class="sub header">5.預言家睜眼，確認任意一個人是不是狼人，主持人比手勢告知，然後閉眼</div>
+	        <div class="sub header">6.女巫睜眼，主持人示意女巫死掉的人，可以用解藥將他救活。
 （可以救自己，或是用毒藥殺任何一名人，整場毒藥和解藥只有各一瓶，然後閉眼</div>
-	  </div>
-	
-	<div id='restart' class="ui primary button">重新開始</div>
-</div>
-
+	    </div>
+		<div id='restart' class="ui primary button">重新開始</div>
+	</div>
+	<script src="./lib/js/jquery-2.1.1.min.js"></script>
+	<script src="./lib/js/semantic.min.js"></script>
+	<script src="index.js"></script>
 </body>
-
-<script type="text/javascript">	
-	// Fisher-Yates Shuffle
-	function shuffle(array) {
-	    var counter = array.length, temp, index;
-	    // While there are elements in the array
-	    while (counter > 0) {
-	        // Pick a random index
-	        index = Math.floor(Math.random() * counter);
-	        // Decrease counter by 1
-	        counter--;
-	        // And swap the last element with it
-	        temp = array[counter];
-	        array[counter] = array[index];
-	        array[index] = temp;
-	    }
-	    return array;
-	}
-	// 預設人數 預言家,女巫,守衛,丘比特 8~11 兩個狼人 12~17 三個狼人 18 四個狼人 其餘村民
-	// 預言家:0 女巫:1 守衛:2 丘比特:3 狼人:4 村民:5
-	function creatarray(num) {
-		ary = [];
-		// 預言家:0 女巫:1 守衛:2 丘比特:3
-		for (var i = 0; i < 4; i++) {
-			ary.push(i);
-		};
-		// 8~11 兩個狼人
-		if(8 <= num <= 11){
-			for (var i = 0; i < 2; i++) {
-				ary.push(4);
-			};
-			for (var i = 0; i < num-4-2; i++) {
-				ary.push(5);
-			};
-		// 12~17 三個狼人
-		}else if(12 <= num <= 17){
-			for (var i = 0; i < 3; i++) {
-				ary.push(4);
-			};
-			for (var i = 0; i < num-4-3; i++) {
-				ary.push(5);
-			};
-		// 18 四個狼人
-		}else{
-			for (var i = 0; i < 4; i++) {
-				ary.push(4);
-			};
-			for (var i = 0; i < num-4-4; i++) {
-				ary.push(5);
-			};
-		}
-		return map(shuffle(ary));
-	}
-	function map(array){
-		var map = ['預言家','女巫','守衛','丘比特','狼人','村民'];
-		for (var i = 0; i < array.length; i++) {
-			array[i] = map[array[i]];
-		};
-		return array;
-	}
-	function number(people){
-		num_ary = [];
-		for (var i = 2; i < people+1; i++) {
-			num_ary.push(i);
-		};
-		return  num_ary;
-	}
-	$(document).on('click','#btn',function(){
-		people = parseInt($(this).siblings().val().trim()) || null;
-		console.log(people)
-		console.log(typeof(people))
-		if( 8 <= people && people <= 18 ){
-			$(this).parent().parent().siblings('.flip').removeClass('hidden');
-			$(this).parent().parent().addClass('hidden');
-			card = 	creatarray(people);
-			num_ary = number(people);
-			console.log(num_ary)
-			console.log('遊戲人數->'+people+' '+'角色順序->'+card);
-			$(document).on('click','.flip > .card',function(){
-				if(card == ''){
-					$(this).parent().addClass('hidden');
-					$(this).parent().siblings('.game').removeClass('hidden');
-				}
-				if( $(this).hasClass('flipped') ){
-					$(this).removeClass('flipped');
-					$(this).children('.front').children().text(num_ary.shift());
-				}
-				else{
-					$(this).addClass('flipped');
-					$(this).children('.back').text(card.shift());
-				}
-			});  			
-		}else{
-			$(this).siblings().val('');
-			alert('請輸入8到18之遊戲人數');
-		}
-	});
-	$(document).on('click','#restart',function(){
-		window.location.reload();
-	});
-	</script>
 </html>
