@@ -69,6 +69,7 @@ $(document).on('click','#btn',function(){
 	console.log(typeof(people))
 	if( 8 <= people && people <= 18 ){
 		$(this).parent().parent().siblings('.flip').removeClass('hidden');
+		console.log('111')
 		$(this).parent().parent().addClass('hidden');
 		card = 	creatarray(people);
 		num_ary = number(people);
